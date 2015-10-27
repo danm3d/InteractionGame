@@ -62,3 +62,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+Assets/LunarConsole/
+Assets/Plugins/Android/LunarConsole/
+LunarConsole.meta
