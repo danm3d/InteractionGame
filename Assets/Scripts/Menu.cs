@@ -16,10 +16,11 @@ public class Menu : MonoBehaviour
 	public void BeginFadeOut()
 	{
 		iTween.CameraFadeAdd(fadeTex, 10);
-		iTween.CameraFadeTo(iTween.Hash("oncomplete", "LoadVisScene()", "amount", 1f, "time", 3f));
+		iTween.CameraFadeTo(iTween.Hash("oncompletetarget", gameObject, "oncomplete", "LoadVisScene", "amount", 1f, "time", 3f));
 	}
 	public void LoadVisScene()
 	{
+		print("loadlevel");
 		Application.LoadLevel(SceneToLoad);
 	}
 }

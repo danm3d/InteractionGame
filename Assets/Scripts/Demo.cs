@@ -39,17 +39,4 @@ public class Demo : MonoBehaviour
 		Camera.main.transform.localPosition = new Vector3(0, 0, -sphereRadius - 50f);
 		rotationVector = new Vector3(0f, rotationSpeed, 0);
 	}
-
-	// Update is called once per frame
-	private void Update()
-	{
-		float x = Input.GetAxis("Horizontal");
-		float y = Input.GetAxis("Vertical");
-		rotationVector = new Vector3(y, -x);
-	}
-
-	private void FixedUpdate()
-	{
-		cameraPivot.Rotate(rotationVector * rotationSpeed * Time.fixedDeltaTime, Space.Self);
-	}
 }
