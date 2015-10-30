@@ -5,18 +5,39 @@ public class CubeBehaviour : MonoBehaviour
 {
 	public TypogenicText nameText, scoreText;
 	public MeshRenderer cubeMesh;
-	private int mScore { get; set; }
+	private int mScore;
+
+	public int Score
+	{
+		get { return mScore; }
+		set
+		{
+			mScore = value;
+			scoreText.Text = mScore.ToString();
+		}
+	}
+	private string mName;
+
+	public string Name
+	{
+		get { return mName; }
+		set
+		{
+			mName = value;
+			nameText.Text = mName;
+		}
+	}
+
+
 	public float rotationSpeed = 1f;
 	private Vector3 rotationVector;
 	private int one = 1;
 
 	void Start()
 	{
-		mScore = Random.Range(1, 200);
+		Score = Random.Range(1, 200);
 		float scale = 1f + ((float)mScore / 80);
 		transform.localScale = new Vector3(scale, scale, 1);
-		nameText.Text = NameGenerator.GetRandomFirstName() + " " + NameGenerator.GetRandomLastName();
-		scoreText.Text = mScore.ToString();
 		cubeMesh.material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
 		rotationSpeed = Random.Range(1f, 2f);
 		rotationVector = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
@@ -27,12 +48,11 @@ public class CubeBehaviour : MonoBehaviour
 	{
 		for (;;)
 		{
-			if (Random.Range(0, 100) > 50)
+			if (Random.Range(0, 10) == 10)
 			{
-				mScore += Random.Range(1, 11);
-				float scale = 1f + ((float)mScore / 50);
+				Score += Random.Range(1, 11);
+				float scale = 1f + ((float)Score / 50);
 				iTween.ScaleTo(gameObject, iTween.Hash("time", .8f, "easeType", iTween.EaseType.easeInOutCubic, "scale", new Vector3(scale, scale, 1)));
-				scoreText.Text = mScore.ToString();
 			}
 			yield return new WaitForSeconds(Random.Range(3f, 9f));
 		}
